@@ -2,140 +2,92 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <main className="bg-white text-[#041E42] font-sans scroll-smooth overflow-x-hidden">
-
-      {/* Header */}
-      <header className="fixed w-full z-50 flex justify-between items-center px-8 py-6 text-white">
+    <div className="relative font-sans text-[#041E42]">
+      {/* Навигация */}
+      <nav className="absolute top-0 left-0 w-full z-50 flex justify-between items-center p-6 text-white">
         <div className="text-2xl font-bold">Luzhniki Beach</div>
-        <nav className="hidden md:flex gap-8 text-lg font-medium">
-          <a href="#home" className="hover:underline transition">Главная</a>
-          <a href="#gallery" className="hover:underline transition">Галерея</a>
-          <a href="#contact" className="hover:underline transition">Контакты</a>
-        </nav>
-      </header>
+        <div className="space-x-6 hidden md:flex">
+          <a href="#" className="hover:underline">Главная</a>
+          <a href="#" className="hover:underline">Галерея</a>
+          <a href="#" className="hover:underline">Контакты</a>
+        </div>
+      </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="relative h-[90vh] w-full flex items-center justify-center">
-        <div
-          className="absolute w-full h-full bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: `url('https://www.luzhniki.ru/media/images/DJI_0479.original.jpg')` }}
+      {/* Hero-секция */}
+      <section className="relative h-screen w-full overflow-hidden">
+        <img
+          src="https://www.luzhniki.ru/media/images/DJI_0479.original.jpg"
+          alt="Лужники"
+          className="absolute w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-[#041E42]/60" />
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative text-center px-6"
-        >
-          <h1 className="text-5xl md:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
-            Открой Лето <br /> в Лужниках
-          </h1>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            className="mt-6 px-8 py-4 bg-[#FFD700] text-[#041E42] text-lg font-semibold rounded-full transition"
-          >
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="relative z-10 flex flex-col justify-center items-center h-full text-center text-white px-4">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">Открой Лето в Лужниках</h1>
+          <button className="px-8 py-4 bg-yellow-400 text-[#041E42] font-semibold rounded-xl hover:scale-105 transition-transform">
             Узнать больше
-          </motion.button>
-        </motion.div>
-      </section>
-
-      {/* Gallery Section */}
-      <section id="gallery" className="p-8 md:p-16 bg-[#F8F8F8]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {[
-            "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
-            "https://www.luzhniki.ru/media/images/Frame_3.original.jpg",
-            "https://www.luzhniki.ru/media/images/Frame_4.original.jpg",
-            "https://www.luzhniki.ru/media/images/Frame_5.original.jpg",
-            "https://www.luzhniki.ru/media/images/Frame_6.original.jpg",
-            "https://www.luzhniki.ru/media/images/Frame_7.original.jpg",
-            "https://www.luzhniki.ru/media/images/IMG_9279-2.original.jpg",
-            "https://www.luzhniki.ru/media/images/P21A5400_GefowJm.original.jpg",
-          ].map((src, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.03 }}
-              className="overflow-hidden rounded-3xl shadow-xl"
-            >
-              <img
-                src={src}
-                alt="Gallery"
-                className="w-full h-64 object-cover hover:brightness-90 transition-all duration-300"
-              />
-            </motion.div>
-          ))}
+          </button>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className="text-center py-32 px-8 md:px-32 bg-white">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-bold mb-12 leading-tight"
-        >
-          Пляжный отдых в самом сердце Москвы
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 1 }}
-          viewport={{ once: true }}
-          className="text-lg md:text-2xl text-[#555] max-w-3xl mx-auto"
-        >
-          50-метровый бассейн, бары, кафе, тренировки и летняя атмосфера под открытым небом.
-        </motion.p>
+      {/* Галерея */}
+      <section className="max-w-6xl mx-auto py-20 px-4 space-y-16">
+        {galleryImages.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="rounded-3xl overflow-hidden shadow-lg"
+          >
+            <img
+              src={item.src}
+              alt={item.title}
+              className="w-full max-h-[500px] object-cover rounded-3xl"
+            />
+            {item.title && (
+              <h2 className="mt-6 text-2xl font-bold text-center">{item.title}</h2>
+            )}
+          </motion.div>
+        ))}
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="bg-[#041E42] text-white py-32 px-8 md:px-32 text-center">
-        <motion.h3
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold mb-8"
-        >
-          Присоединяйтесь к нам
-        </motion.h3>
-        <div className="flex justify-center gap-8 flex-wrap">
-          <motion.a
-            href="https://instagram.com"
-            target="_blank"
-            className="hover:underline"
-            whileHover={{ scale: 1.1 }}
-          >
-            Instagram
-          </motion.a>
-          <motion.a
-            href="https://vk.com"
-            target="_blank"
-            className="hover:underline"
-            whileHover={{ scale: 1.1 }}
-          >
-            VK
-          </motion.a>
-          <motion.a
-            href="https://t.me"
-            target="_blank"
-            className="hover:underline"
-            whileHover={{ scale: 1.1 }}
-          >
-            Telegram
-          </motion.a>
-        </div>
-        <p className="text-sm mt-8 text-[#bbb]">5 минут от метро Спортивная. Часы работы: 08:00 - 22:00</p>
-      </section>
-
-      {/* Floating Button */}
-      <a
-        href="#contact"
-        className="fixed bottom-8 right-8 bg-[#FFD700] text-[#041E42] px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-110 transition-all z-50"
-      >
-        Забронировать визит
-      </a>
-    </main>
+      {/* Футер */}
+      <footer className="bg-[#041E42] text-white text-center py-6 text-sm">
+        © 2025 Luzhniki Beach. Все права защищены.
+      </footer>
+    </div>
   );
 }
+
+// Список изображений галереи
+const galleryImages = [
+  {
+    src: "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
+    title: "Пляжная зона",
+  },
+  {
+    src: "https://www.luzhniki.ru/media/images/Frame_8.original.jpg",
+    title: "Бассейн под открытым небом",
+  },
+  {
+    src: "https://www.luzhniki.ru/media/images/Frame_3.original.jpg",
+    title: "Территория отдыха",
+  },
+  {
+    src: "https://www.luzhniki.ru/media/images/Frame_4.original.jpg",
+    title: "Летний бар",
+  },
+  {
+    src: "https://www.luzhniki.ru/media/images/Frame_5.original.jpg",
+    title: "Детская зона",
+  },
+  {
+    src: "https://www.luzhniki.ru/media/images/Frame_6.original.jpg",
+    title: "Школа плавания",
+  },
+  {
+    src: "https://www.luzhniki.ru/media/images/Frame_7.original.jpg",
+    title: "Зона для спортивных тренировок",
+  },
+];
