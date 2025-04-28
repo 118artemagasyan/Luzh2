@@ -2,116 +2,138 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <motion.div
-      initial="hidden"
-      animate="show"
-      variants={{
-        hidden: {},
-        show: { transition: { staggerChildren: 0.15 } },
-      }}
-      className="flex flex-col scroll-smooth font-sans text-[#041E42]"
-    >
+    <main className="bg-white text-[#041E42] font-sans scroll-smooth overflow-x-hidden">
+
+      {/* Header */}
+      <header className="fixed w-full z-50 bg-white/80 backdrop-blur-md py-4 px-8 flex justify-between items-center shadow-sm">
+        <div className="text-2xl font-bold">Luzhniki Beach</div>
+        <nav className="hidden md:flex gap-8 text-lg font-medium">
+          <a href="#home" className="hover:underline transition">Главная</a>
+          <a href="#gallery" className="hover:underline transition">Галерея</a>
+          <a href="#contact" className="hover:underline transition">Контакты</a>
+        </nav>
+      </header>
 
       {/* Hero Section */}
-      <section className="relative h-screen w-full overflow-hidden">
-        <div className="absolute w-full h-full">
-          <img
-            src="https://www.luzhniki.ru/media/images/DJI_0479.original.jpg"
-            alt="Beach Overview"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Открой лето в Лужниках</h1>
-          <button className="text-lg px-8 py-4 bg-[#FFD700] text-[#041E42] rounded-xl hover:scale-110 transition-transform">
+      <section id="home" className="relative h-screen w-full flex items-center justify-center">
+        <div
+          className="absolute w-full h-full bg-cover bg-center bg-fixed"
+          style={{ backgroundImage: `url('https://www.luzhniki.ru/media/images/DJI_0479.original.jpg')` }}
+        />
+        <div className="absolute inset-0 bg-[#041E42]/50" />
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="relative text-center px-6"
+        >
+          <h1 className="text-5xl md:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
+            Открой Лето <br /> в Лужниках
+          </h1>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            className="mt-6 px-8 py-4 bg-[#FFD700] text-[#041E42] text-lg font-semibold rounded-full transition"
+          >
             Узнать больше
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </section>
 
-      {/* Про пляж — карточки */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6 md:px-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 text-[#041E42]">
-            Летний отдых на любой вкус
-          </h2>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                src: "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
-                title: "Бассейн",
-                description: "50-метровый бассейн на свежем воздухе для взрослых и детей."
-              },
-              {
-                src: "https://www.luzhniki.ru/media/images/Frame_3.original.jpg",
-                title: "Шезлонги и бары",
-                description: "Зона отдыха с шезлонгами, барами и летней атмосферой на пляже."
-              },
-              {
-                src: "https://www.luzhniki.ru/media/images/Frame_4.original.jpg",
-                title: "Детская зона",
-                description: "Игровая зона и мелкий бассейн для самых маленьких гостей."
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300">
-                <img src={item.src} alt={item.title} className="w-full h-60 object-cover" />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-[#041E42]">{item.title}</h3>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+      {/* Gallery Section */}
+      <section id="gallery" className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 md:p-16 bg-[#F8F8F8]">
+        {[
+          "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
+          "https://www.luzhniki.ru/media/images/Frame_3.original.jpg",
+          "https://www.luzhniki.ru/media/images/Frame_4.original.jpg",
+          "https://www.luzhniki.ru/media/images/Frame_5.original.jpg",
+          "https://www.luzhniki.ru/media/images/Frame_6.original.jpg",
+          "https://www.luzhniki.ru/media/images/Frame_7.original.jpg",
+          "https://www.luzhniki.ru/media/images/IMG_9279-2.original.jpg",
+          "https://www.luzhniki.ru/media/images/P21A5400_GefowJm.original.jpg",
+        ].map((src, idx) => (
+          <motion.div
+            key={idx}
+            whileHover={{ scale: 1.05 }}
+            className="overflow-hidden rounded-2xl shadow-lg"
+          >
+            <img
+              src={src}
+              alt="Gallery"
+              className="w-full h-80 object-cover hover:brightness-90 transition-all duration-300"
+            />
+          </motion.div>
+        ))}
       </section>
 
-      {/* Галерея Атмосферы */}
-      <section className="py-16 bg-[#F9FAFB]">
-        <div className="container mx-auto px-6 md:px-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 text-[#041E42]">
-            Атмосфера пляжа
-          </h2>
-          <div className="flex space-x-6 overflow-x-scroll no-scrollbar py-4">
-            {[
-              "https://www.luzhniki.ru/media/images/Frame_5.original.jpg",
-              "https://www.luzhniki.ru/media/images/Frame_6.original.jpg",
-              "https://www.luzhniki.ru/media/images/Frame_7.original.jpg",
-              "https://www.luzhniki.ru/media/images/P21A5400_GefowJm.original.jpg",
-              "https://www.luzhniki.ru/media/images/P21A5359.original.jpg",
-            ].map((src, idx) => (
-              <motion.div key={idx} whileHover={{ scale: 1.05 }} className="min-w-[300px] md:min-w-[400px] flex-shrink-0 rounded-2xl overflow-hidden shadow-lg">
-                <img src={src} alt={`Галерея ${idx}`} className="w-full h-64 object-cover" />
-              </motion.div>
-            ))}
-          </div>
-        </div>
+      {/* About Section */}
+      <section className="text-center py-24 px-8 md:px-32 bg-white">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
+        >
+          Пляжный отдых в самом сердце Москвы
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 1 }}
+          viewport={{ once: true }}
+          className="text-lg md:text-2xl text-[#555] max-w-3xl mx-auto"
+        >
+          50-метровый бассейн, бары, кафе, спортивные тренировки и летняя атмосфера под открытым небом.
+        </motion.p>
       </section>
 
-      {/* Что есть на пляже */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6 md:px-12">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-12 text-[#041E42]">
-            Что вас ждет на пляже
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
-            {[
-              { icon: "🏊‍♂️", label: "Бассейн" },
-              { icon: "🧒", label: "Детская зона" },
-              { icon: "🏄‍♂️", label: "Школа плавания" },
-              { icon: "🍹", label: "Бары и кафе" },
-              { icon: "🛋️", label: "Шезлонги" },
-              { icon: "🏋️‍♂️", label: "Тренировки" },
-            ].map((item, idx) => (
-              <motion.div key={idx} whileHover={{ scale: 1.1 }} className="bg-[#F9FAFB] rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all">
-                <div className="text-5xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-semibold text-[#041E42]">{item.label}</h3>
-              </motion.div>
-            ))}
-          </div>
+      {/* Contact Section */}
+      <section id="contact" className="bg-[#041E42] text-white py-24 px-8 md:px-32 text-center">
+        <motion.h3
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl font-bold mb-8"
+        >
+          Присоединяйтесь к нам
+        </motion.h3>
+        <div className="flex justify-center gap-8 flex-wrap">
+          <motion.a
+            href="https://instagram.com"
+            target="_blank"
+            className="hover:underline"
+            whileHover={{ scale: 1.1 }}
+          >
+            Instagram
+          </motion.a>
+          <motion.a
+            href="https://vk.com"
+            target="_blank"
+            className="hover:underline"
+            whileHover={{ scale: 1.1 }}
+          >
+            VK
+          </motion.a>
+          <motion.a
+            href="https://t.me"
+            target="_blank"
+            className="hover:underline"
+            whileHover={{ scale: 1.1 }}
+          >
+            Telegram
+          </motion.a>
         </div>
+        <p className="text-sm mt-8 text-[#bbb]">5 минут от метро Спортивная. Часы работы: 08:00 - 22:00</p>
       </section>
 
-    </motion.div>
+      {/* Floating Button */}
+      <a
+        href="#contact"
+        className="fixed bottom-8 right-8 bg-[#FFD700] text-[#041E42] px-6 py-3 rounded-full font-semibold shadow-lg hover:scale-110 transition-all z-50"
+      >
+        Забронировать визит
+      </a>
+    </main>
   );
 }
