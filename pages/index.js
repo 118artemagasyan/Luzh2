@@ -15,12 +15,12 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen w-full flex items-center justify-center">
+      <section id="home" className="relative h-[90vh] w-full flex items-center justify-center">
         <div
           className="absolute w-full h-full bg-cover bg-center bg-fixed"
           style={{ backgroundImage: `url('https://www.luzhniki.ru/media/images/DJI_0479.original.jpg')` }}
         />
-        <div className="absolute inset-0 bg-[#041E42]/50" />
+        <div className="absolute inset-0 bg-[#041E42]/60" />
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export default function Home() {
 
       {/* Gallery Section */}
       <section id="gallery" className="p-8 md:p-16 bg-[#F8F8F8]">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {[
             "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
             "https://www.luzhniki.ru/media/images/Frame_3.original.jpg",
@@ -68,13 +68,13 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="text-center py-24 px-8 md:px-32 bg-white">
+      <section className="text-center py-32 px-8 md:px-32 bg-white">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
+          className="text-4xl md:text-6xl font-bold mb-12 leading-tight"
         >
           Пляжный отдых в самом сердце Москвы
         </motion.h2>
@@ -90,7 +90,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="bg-[#041E42] text-white py-24 px-8 md:px-32 text-center">
+      <section id="contact" className="bg-[#041E42] text-white py-32 px-8 md:px-32 text-center">
         <motion.h3
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
