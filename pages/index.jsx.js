@@ -6,8 +6,8 @@ export default function Home() {
       initial="hidden"
       animate="show"
       variants={{
-        hidden: {{} },
-        show: {{ transition: {{ staggerChildren: 0.15 }} }},
+        hidden: {},
+        show: { transition: { staggerChildren: 0.15 } },
       }}
       className="flex flex-col scroll-smooth font-sans text-[#041E42]"
     >
