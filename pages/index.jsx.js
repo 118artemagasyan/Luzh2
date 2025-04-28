@@ -5,7 +5,7 @@ export default function Home() {
     <main className="bg-white text-[#041E42] font-sans scroll-smooth overflow-x-hidden">
 
       {/* Header */}
-      <header className="fixed w-full z-50 bg-white/80 backdrop-blur-md py-4 px-8 flex justify-between items-center shadow-sm">
+      <header className="fixed w-full z-50 flex justify-between items-center px-8 py-6 text-white">
         <div className="text-2xl font-bold">Luzhniki Beach</div>
         <nav className="hidden md:flex gap-8 text-lg font-medium">
           <a href="#home" className="hover:underline transition">Главная</a>
@@ -40,29 +40,31 @@ export default function Home() {
       </section>
 
       {/* Gallery Section */}
-      <section id="gallery" className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8 md:p-16 bg-[#F8F8F8]">
-        {[
-          "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
-          "https://www.luzhniki.ru/media/images/Frame_3.original.jpg",
-          "https://www.luzhniki.ru/media/images/Frame_4.original.jpg",
-          "https://www.luzhniki.ru/media/images/Frame_5.original.jpg",
-          "https://www.luzhniki.ru/media/images/Frame_6.original.jpg",
-          "https://www.luzhniki.ru/media/images/Frame_7.original.jpg",
-          "https://www.luzhniki.ru/media/images/IMG_9279-2.original.jpg",
-          "https://www.luzhniki.ru/media/images/P21A5400_GefowJm.original.jpg",
-        ].map((src, idx) => (
-          <motion.div
-            key={idx}
-            whileHover={{ scale: 1.05 }}
-            className="overflow-hidden rounded-2xl shadow-lg"
-          >
-            <img
-              src={src}
-              alt="Gallery"
-              className="w-full h-80 object-cover hover:brightness-90 transition-all duration-300"
-            />
-          </motion.div>
-        ))}
+      <section id="gallery" className="p-8 md:p-16 bg-[#F8F8F8]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[
+            "https://www.luzhniki.ru/media/images/Frame_2.original.jpg",
+            "https://www.luzhniki.ru/media/images/Frame_3.original.jpg",
+            "https://www.luzhniki.ru/media/images/Frame_4.original.jpg",
+            "https://www.luzhniki.ru/media/images/Frame_5.original.jpg",
+            "https://www.luzhniki.ru/media/images/Frame_6.original.jpg",
+            "https://www.luzhniki.ru/media/images/Frame_7.original.jpg",
+            "https://www.luzhniki.ru/media/images/IMG_9279-2.original.jpg",
+            "https://www.luzhniki.ru/media/images/P21A5400_GefowJm.original.jpg",
+          ].map((src, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.03 }}
+              className="overflow-hidden rounded-3xl shadow-xl"
+            >
+              <img
+                src={src}
+                alt="Gallery"
+                className="w-full h-64 object-cover hover:brightness-90 transition-all duration-300"
+              />
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* About Section */}
@@ -83,7 +85,7 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-lg md:text-2xl text-[#555] max-w-3xl mx-auto"
         >
-          50-метровый бассейн, бары, кафе, спортивные тренировки и летняя атмосфера под открытым небом.
+          50-метровый бассейн, бары, кафе, тренировки и летняя атмосфера под открытым небом.
         </motion.p>
       </section>
 
